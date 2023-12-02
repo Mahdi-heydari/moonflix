@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import GlobalLoading from "../common/GlobalLoading";
 
 export default function MainLayout() {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ export default function MainLayout() {
   return (
     <>
       {/* global loading */}
+      <GlobalLoading />
 
       {/* loging Modal */}
 
@@ -23,8 +25,6 @@ export default function MainLayout() {
       </Box>
 
       {/* footer */}
-    
-
     </>
   );
 }
