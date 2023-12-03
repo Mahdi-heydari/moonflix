@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import GlobalLoading from "../common/GlobalLoading";
+import Footer from "../common/Footer";
 
 export default function MainLayout() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export default function MainLayout() {
       <GlobalLoading />
 
       {/* loging Modal */}
+      
 
       <Box display="flex" minHeight="100vh">
         {/* header */}
@@ -25,6 +27,8 @@ export default function MainLayout() {
       </Box>
 
       {/* footer */}
+      <Footer/>
+
     </>
   );
 }
