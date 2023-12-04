@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import GlobalLoading from "../common/GlobalLoading";
 import Footer from "../common/Footer";
+import Topbar from "../common/Topbar";
 
 export default function MainLayout() {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export default function MainLayout() {
 
       <Box display="flex" minHeight="100vh">
         {/* header */}
-
+        <Topbar/>
         {/* main */}
         <Box component="main" flexGrow={1} overflow="hidden" minHeight="100vh">
           <Outlet />
