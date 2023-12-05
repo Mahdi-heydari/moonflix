@@ -15,6 +15,8 @@ import menuConfigs from "../../config/menu.configs";
 import { Link } from "react-router-dom";
 import { setThemeMode } from "../../redux/features/themeModeSlice";
 import { DarkModeOutlined, WbSunnyOutlined } from "@mui/icons-material";
+import UserMenu from "./UserMenu";
+import { setAuthModalOpen } from "../../redux/features/authModalSlice";
 
 const ScrollAppBar = function ({ window, children }) {
   const { themeMode } = useSelector((state) => state.themeMode);
@@ -45,10 +47,10 @@ function Topbar() {
   const dispatch = useDispatch();
   const { appState } = useSelector((state) => state.appState);
   const { themeMode } = useSelector((state) => state.themeMode);
-  console.log("themeMode", themeMode.dark);
+  const { user } = useSelector((state) => state.user);
+  
   const onSwithTheme = () => {
     const theme = themeMode === "dark" ? "light" : "dark";
-    console.log("theme", theme);
     dispatch(setThemeMode(theme));
   };
 
@@ -102,6 +104,13 @@ function Topbar() {
                 {themeMode === "light" && <WbSunnyOutlined />}
               </IconButton>
             </Box>
+
+            {/* User Menu */}
+            <Stack spacing={3} direction="row" alignItems="center">
+              {!user && <Button variant="contained" onClick={()=> dispatch(setAuthModalOpen(true))}>sign in</Button>}
+            </Stack>
+            {user && <UserMenu/>}
+
           </Toolbar>
         </AppBar>
       </ScrollAppBar>
