@@ -1,4 +1,4 @@
-import { cloneElement } from "react";
+import { cloneElement, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useScrollTrigger,
@@ -17,6 +17,7 @@ import { setThemeMode } from "../../redux/features/themeModeSlice";
 import { DarkModeOutlined, WbSunnyOutlined } from "@mui/icons-material";
 import UserMenu from "./UserMenu";
 import { setAuthModalOpen } from "../../redux/features/authModalSlice";
+import Sidebar from "./Sidebar";
 
 const ScrollAppBar = function ({ window, children }) {
   const { themeMode } = useSelector((state) => state.themeMode);
@@ -48,14 +49,18 @@ function Topbar() {
   const { appState } = useSelector((state) => state.appState);
   const { themeMode } = useSelector((state) => state.themeMode);
   const { user } = useSelector((state) => state.user);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   
   const onSwithTheme = () => {
     const theme = themeMode === "dark" ? "light" : "dark";
     dispatch(setThemeMode(theme));
   };
 
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
   return (
     <>
+      <Sidebar open={sidebarOpen} onToggleSidebar={toggleSidebar}/>
       <ScrollAppBar>
         <AppBar elevation={0} sx={{ zIndex: 9999 }}>
           <Toolbar
@@ -65,6 +70,7 @@ function Topbar() {
               <IconButton
                 color="inherit"
                 sx={{ mr: 2, display: { md: "none" } }}
+                onClick={toggleSidebar}
               >
                 <MenuIcon />
               </IconButton>
