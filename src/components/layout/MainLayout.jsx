@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import GlobalLoading from "../common/GlobalLoading";
 import Footer from "../common/Footer";
 import Topbar from "../common/Topbar";
+import AuthModal from "../common/AuthModal";
 
 export default function MainLayout() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function MainLayout() {
       <GlobalLoading />
 
       {/* loging Modal */}
-      
+      <AuthModal/>
 
       <Box display="flex" minHeight="100vh">
         {/* header */}
